@@ -1,7 +1,13 @@
 package br.com.alura.conversordemoedas;
 
+import com.google.gson.Gson;
+
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Properties;
 
 public class ConversorDeMoeda {
@@ -33,5 +39,20 @@ public class ConversorDeMoeda {
     public String getBaseUrl() {
         return baseUrl;
     }
+    public TaxaDeCambio buscartaxas(String moedaBase){
+        URI urlString = URI.create(baseUrl + apiKey + "/test/" + moedaBase);
 
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(urlString)
+                .build();
+        try{
+            HttpResponse<String> response = HttpClient
+                    .newHttpClient()
+                    .send(request,HttpResponse.BodyHandlers.ofString());
+            return new Gson().fromJson(response.body(),TaxaDeCambio.class);
+        }catch (Exception e){
+            throw new RuntimeException(" ");
+
+        }
+    }
 }
