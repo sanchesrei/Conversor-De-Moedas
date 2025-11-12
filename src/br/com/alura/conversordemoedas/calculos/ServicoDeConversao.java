@@ -1,4 +1,6 @@
-package br.com.alura.conversordemoedas;
+package br.com.alura.conversordemoedas.calculos;
+
+import br.com.alura.conversordemoedas.exchangerateapi.ConversorDeMoeda;
 
 import java.util.Scanner;
 
@@ -24,6 +26,23 @@ public class ServicoDeConversao {
                 moedaBase = "BRL";
                 moedaAlvo = "USD";
                 break;
+            case "3":
+                moedaBase = "BRL";
+                moedaAlvo = "CNY";
+                break;
+            case "4":
+                moedaBase = "EUR";
+                moedaAlvo = "USD";
+                break;
+            case "5":
+                moedaBase = "BRL";
+                moedaAlvo = "ARS";
+                break;
+            case "6":
+                moedaBase = "BRL";
+                moedaAlvo = "ZAR";
+                break;
+
             default:
                 System.out.println("Opção '" + opcao + "' não reconhecida. Tente novamente.");
                 return;

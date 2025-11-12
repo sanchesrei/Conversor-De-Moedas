@@ -1,14 +1,12 @@
-package br.com.alura.conversordemoedas;
+package br.com.alura.conversordemoedas.exchangerateapi;
 
+import br.com.alura.conversordemoedas.calculos.TaxaDeCambio;
 import com.google.gson.Gson;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Properties;
 
 public class ConversorDeMoeda {
     private String apiKey = "SUA API KEY AQUI !";
