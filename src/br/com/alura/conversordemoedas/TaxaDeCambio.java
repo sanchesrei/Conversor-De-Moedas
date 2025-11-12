@@ -4,13 +4,13 @@ import java.util.Map;
 
 public class TaxaDeCambio {
     private Map<String, Double> conversion_rates;
-    private String codeBase;
+    private String base_code;
 
     public Map<String, Double> getConversion_rates() {
         return conversion_rates;
     }
 
-    public String getCodeBase() {
-        return codeBase;
+    public String getbase_code() {
+        return base_code;
     }
 }

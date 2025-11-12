@@ -11,36 +11,11 @@ import java.net.http.HttpResponse;
 import java.util.Properties;
 
 public class ConversorDeMoeda {
-    private String apiKey;
-    private String baseUrl;
+    private String apiKey = "SUA API KEY AQUI !";
+    private String baseUrl = "https://v6.exchangerate-api.com/v6/";
 
-    public ConversorDeMoeda(){
-        Properties prop = new Properties();
-        try(FileInputStream input = new FileInputStream("api_config.properties")){
-            prop.load(input);
-            this.apiKey = prop.getProperty("API_KEY");
-            this.baseUrl = prop.getProperty("BASE_URL");
-            if (this.apiKey==null || this.apiKey.isEmpty()){
-                System.out.println("Erro a Api Key nao foi encontrada ou esta vazia no arquivo ");
-            }
-        }catch (IOException ex) {
-            System.out.println("ERRO FATAL: O arquivo 'api_config.properties' não foi encontrado na raiz do projeto.");
-            this.apiKey = null;
-            this.baseUrl = null;
-
-        }
-
-    }
-
-    public String getApiKey() {
-        return apiKey;
-    }
-
-    public String getBaseUrl() {
-        return baseUrl;
-    }
     public TaxaDeCambio buscartaxas(String moedaBase){
-        URI urlString = URI.create(baseUrl + apiKey + "/test/" + moedaBase);
+        URI urlString = URI.create(baseUrl + apiKey + "/latest/"  + moedaBase);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(urlString)
@@ -51,7 +26,7 @@ public class ConversorDeMoeda {
                     .send(request,HttpResponse.BodyHandlers.ofString());
             return new Gson().fromJson(response.body(),TaxaDeCambio.class);
         }catch (Exception e){
-            throw new RuntimeException(" ");
+            throw new RuntimeException("Erro ao buscar taxas de câmbio: verifique a URL ou a conexão", e);
 
         }
     }
